@@ -1,0 +1,9 @@
+Flask
+python-dotenv
+google-generativeai
+torch
+diffusers
+Pillow
+flask-ngrok
+pyngrok
+requests

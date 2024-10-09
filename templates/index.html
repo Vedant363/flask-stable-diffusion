@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Poster Generator</h1>
+        <form method="POST" class="mt-4">
+            <div class="mb-3">
+                <label for="poster_theme" class="form-label">Poster Theme</label>
+                <input list="poster_themes" class="form-control" id="poster_theme" name="poster_theme" placeholder="Select or enter a theme">
+                <datalist id="poster_themes">
+                    <option value="Futuristic city skyline at sunset">
+                    <option value="Minimalistic nature landscape with mountains">
+                    <option value="Motivational poster with a mountain climber">
+                    <option value="Retro 80s neon city with flying cars">
+                    <option value="Abstract art featuring geometric shapes and colors">
+                    <option value="Fantasy world with dragons and castles">
+                </datalist>
+            </div>
+    
+            <!-- Repeat for all other fields -->
+            <!-- Color Scheme -->
+            <div class="mb-3">
+                <label for="color_scheme" class="form-label">Color Scheme</label>
+                <input list="color_schemes" class="form-control" id="color_scheme" name="color_scheme" placeholder="Select or enter a color scheme">
+                <datalist id="color_schemes">
+                    <option value="Vibrant and colorful">
+                    <option value="Monochrome">
+                    <option value="Pastel tones">
+                    <option value="Earthy tones">
+                    <option value="Cool tones">
+                    <option value="Warm tones">
+                </datalist>
+            </div>
+    
+            <!-- Art Direction -->
+            <div class="mb-3">
+                <label for="art_direction" class="form-label">Art Direction</label>
+                <input list="art_directions" class="form-control" id="art_direction" name="art_direction" placeholder="Select or enter an art direction">
+                <datalist id="art_directions">
+                    <option value="Watercolor painting">
+                    <option value="Cyberpunk digital art">
+                    <option value="Vintage poster with grainy texture">
+                    <option value="Modern minimalism with clean lines">
+                    <option value="Collage style with mixed media">
+                    <option value="Pop art with bold colors and outlines">
+                </datalist>
+            </div>
+    
+            <!-- Text to Add on Poster -->
+            <div class="mb-3">
+                <label for="poster_text" class="form-label">Text to Add on Poster</label>
+                <input type="text" class="form-control" id="poster_text" name="poster_text" placeholder="Enter the text (e.g., quotes, titles)" required>
+            </div>
+    
+            <!-- Poster Orientation -->
+            <div class="mb-3">
+                <label for="poster_orientation" class="form-label">Poster Orientation</label>
+                <input list="poster_orientations" class="form-control" id="poster_orientation" name="poster_orientation" placeholder="Select or enter orientation">
+                <datalist id="poster_orientations">
+                    <option value="Portrait">
+                    <option value="Landscape">
+                    <option value="Square">
+                </datalist>
+            </div>
+    
+            <!-- Use Case -->
+            <div class="mb-3">
+                <label for="use_case" class="form-label">Use Case</label>
+                <input list="use_cases" class="form-control" id="use_case" name="use_case" placeholder="Select or enter use case">
+                <datalist id="use_cases">
+                    <option value="Celebratory">
+                    <option value="Professional">
+                    <option value="Artistic">
+                    <option value="Educational">
+                    <option value="Motivational">
+                    <option value="Festive">
+                </datalist>
+            </div>
+    
+            <!-- Poster Resolution -->
+            <div class="mb-3">
+                <label for="poster_resolution" class="form-label">Poster Resolution</label>
+                <input list="poster_resolutions" class="form-control" id="poster_resolution" name="poster_resolution" placeholder="Select or enter resolution">
+                <datalist id="poster_resolutions">
+                    <option value="72 DPI (for web use)">
+                    <option value="150 DPI (standard print)">
+                    <option value="300 DPI (high-quality print)">
+                    <option value="600 DPI (professional print)">
+                </datalist>
+            </div>
+    
+            <!-- Additional Effects -->
+            <div class="mb-3">
+                <label for="additional_effect" class="form-label">Additional Effects</label>
+                <input list="additional_effects" class="form-control" id="additional_effect" name="additional_effect" placeholder="Select or enter additional effect">
+                <datalist id="additional_effects">
+                    <option value="Vintage filter">
+                    <option value="Black and white effect">
+                    <option value="Texture overlay">
+                    <option value="Gaussian blur">
+                    <option value="Vignette effect">
+                    <option value="Light leaks or lens flare">
+                </datalist>
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Generate Poster</button>
+        </form>
+    </div>
+</body>
+</html>
