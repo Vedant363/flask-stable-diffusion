@@ -4,16 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poster Generator</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+           font-family: 'Poppins', sans-serif;
+           background: linear-gradient(135deg, #e80eef, #eab421, #c94b4b, #ed280a, #3b5af5);
+           background-size: cover;
+           color: #333;
+           min-height: 100vh;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 90%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            color: #3a86ff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            color: #4a4a4a;
+        }
+
+        input[type="text"],
+        input[list] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[list]:focus {
+            border-color: #3a86ff;
+            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #3a86ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: #2a75e6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(58, 134, 255, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            button {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Poster Generator</h1>
-        <form method="POST" class="mt-4">
-            <div class="mb-3">
-                <label for="poster_theme" class="form-label">Poster Theme</label>
-                <input list="poster_themes" class="form-control" id="poster_theme" name="poster_theme" placeholder="Select or enter a theme">
+        <h1>Poster Generator</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="poster_theme">Poster Theme</label>
+                <input list="poster_themes" id="poster_theme" name="poster_theme" placeholder="Select or enter a theme">
                 <datalist id="poster_themes">
                     <option value="Futuristic city skyline at sunset">
                     <option value="Minimalistic nature landscape with mountains">
@@ -23,12 +121,10 @@
                     <option value="Fantasy world with dragons and castles">
                 </datalist>
             </div>
-    
-            <!-- Repeat for all other fields -->
-            <!-- Color Scheme -->
-            <div class="mb-3">
-                <label for="color_scheme" class="form-label">Color Scheme</label>
-                <input list="color_schemes" class="form-control" id="color_scheme" name="color_scheme" placeholder="Select or enter a color scheme">
+
+            <div class="form-group">
+                <label for="color_scheme">Color Scheme</label>
+                <input list="color_schemes" id="color_scheme" name="color_scheme" placeholder="Select or enter a color scheme">
                 <datalist id="color_schemes">
                     <option value="Vibrant and colorful">
                     <option value="Monochrome">
@@ -38,11 +134,10 @@
                     <option value="Warm tones">
                 </datalist>
             </div>
-    
-            <!-- Art Direction -->
-            <div class="mb-3">
-                <label for="art_direction" class="form-label">Art Direction</label>
-                <input list="art_directions" class="form-control" id="art_direction" name="art_direction" placeholder="Select or enter an art direction">
+
+            <div class="form-group">
+                <label for="art_direction">Art Direction</label>
+                <input list="art_directions" id="art_direction" name="art_direction" placeholder="Select or enter an art direction">
                 <datalist id="art_directions">
                     <option value="Watercolor painting">
                     <option value="Cyberpunk digital art">
@@ -52,28 +147,25 @@
                     <option value="Pop art with bold colors and outlines">
                 </datalist>
             </div>
-    
-            <!-- Text to Add on Poster -->
-            <div class="mb-3">
-                <label for="poster_text" class="form-label">Text to Add on Poster</label>
-                <input type="text" class="form-control" id="poster_text" name="poster_text" placeholder="Enter the text (e.g., quotes, titles)" required>
+
+            <div class="form-group">
+                <label for="poster_text">Text to Add on Poster</label>
+                <input type="text" id="poster_text" name="poster_text" placeholder="Enter the text (e.g., quotes, titles)" required>
             </div>
-    
-            <!-- Poster Orientation -->
-            <div class="mb-3">
-                <label for="poster_orientation" class="form-label">Poster Orientation</label>
-                <input list="poster_orientations" class="form-control" id="poster_orientation" name="poster_orientation" placeholder="Select or enter orientation">
+
+            <div class="form-group">
+                <label for="poster_orientation">Poster Orientation</label>
+                <input list="poster_orientations" id="poster_orientation" name="poster_orientation" placeholder="Select or enter orientation">
                 <datalist id="poster_orientations">
                     <option value="Portrait">
                     <option value="Landscape">
                     <option value="Square">
                 </datalist>
             </div>
-    
-            <!-- Use Case -->
-            <div class="mb-3">
-                <label for="use_case" class="form-label">Use Case</label>
-                <input list="use_cases" class="form-control" id="use_case" name="use_case" placeholder="Select or enter use case">
+
+            <div class="form-group">
+                <label for="use_case">Use Case</label>
+                <input list="use_cases" id="use_case" name="use_case" placeholder="Select or enter use case">
                 <datalist id="use_cases">
                     <option value="Celebratory">
                     <option value="Professional">
@@ -83,11 +175,10 @@
                     <option value="Festive">
                 </datalist>
             </div>
-    
-            <!-- Poster Resolution -->
-            <div class="mb-3">
-                <label for="poster_resolution" class="form-label">Poster Resolution</label>
-                <input list="poster_resolutions" class="form-control" id="poster_resolution" name="poster_resolution" placeholder="Select or enter resolution">
+
+            <div class="form-group">
+                <label for="poster_resolution">Poster Resolution</label>
+                <input list="poster_resolutions" id="poster_resolution" name="poster_resolution" placeholder="Select or enter resolution">
                 <datalist id="poster_resolutions">
                     <option value="72 DPI (for web use)">
                     <option value="150 DPI (standard print)">
@@ -95,11 +186,10 @@
                     <option value="600 DPI (professional print)">
                 </datalist>
             </div>
-    
-            <!-- Additional Effects -->
-            <div class="mb-3">
-                <label for="additional_effect" class="form-label">Additional Effects</label>
-                <input list="additional_effects" class="form-control" id="additional_effect" name="additional_effect" placeholder="Select or enter additional effect">
+
+            <div class="form-group">
+                <label for="additional_effect">Additional Effects</label>
+                <input list="additional_effects" id="additional_effect" name="additional_effect" placeholder="Select or enter additional effect">
                 <datalist id="additional_effects">
                     <option value="Vintage filter">
                     <option value="Black and white effect">
@@ -109,8 +199,8 @@
                     <option value="Light leaks or lens flare">
                 </datalist>
             </div>
-    
-            <button type="submit" class="btn btn-primary">Generate Poster</button>
+
+            <button type="submit">Generate Poster</button>
         </form>
     </div>
 </body>

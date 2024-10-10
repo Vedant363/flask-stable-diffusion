@@ -8,7 +8,7 @@ from PIL import Image
 from flask_ngrok import run_with_ngrok
 
 app = Flask(__name__)
-run_with_ngrok(app)
+# run_with_ngrok(app)
 load_dotenv()
 
 # Set a secret key for session management (fix for the error)
@@ -45,13 +45,14 @@ def home():
 
             # Combine inputs into a single prompt
             user_input = (
-                f"{poster_theme}, {color_scheme}, {art_direction}, '{poster_text}', "
-                f"{poster_orientation}, {use_case}, {poster_resolution}, {additional_effect}"
+                f"{poster_theme} theme, {color_scheme} color scheme, {art_direction} art direction, "
+                f"containing the text '{poster_text}', {poster_orientation} orientation, for {use_case}, "
+                f"resolution {poster_resolution}, with additional effect of {additional_effect}"
             )
 
-            # Step 2: Refine the user input using the Gemini model
+            # Step 2: Refine the user input using the model with more focus on 'poster'
             response = model.generate_content(
-                f"Give a single line concise prompt for this which can be used to generate an image of: A poster containing {user_input}"
+                f"Generate a one-line prompt to create a **poster** with the following details: {user_input}. The emphasis should be on creating a visually striking poster."
             )
             refined_prompt = response.text
             print(f"Refined Prompt: {refined_prompt}")
