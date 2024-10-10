@@ -8,7 +8,7 @@ from PIL import Image
 from flask_ngrok import run_with_ngrok
 
 app = Flask(__name__)
-# run_with_ngrok(app)
+run_with_ngrok(app)
 load_dotenv()
 
 # Set a secret key for session management (fix for the error)
