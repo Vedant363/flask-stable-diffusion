@@ -6,6 +6,7 @@ import torch
 from diffusers import StableDiffusionPipeline
 from PIL import Image
 from flask_ngrok import run_with_ngrok
+import base64
 
 app = Flask(__name__)
 run_with_ngrok(app)
@@ -15,7 +16,8 @@ load_dotenv()
 app.secret_key = os.getenv('SECRET_KEY', 'VEDANT')
 
 # Load the API key
-api_key = os.getenv('API_KEY')
+encoded_api_key = os.getenv('API_KEY')
+api_key = base64.b64decode(encoded_api_key).decode('utf-8')
 if not api_key:
     raise RuntimeError("API_KEY not found in environment variables.")
 genai.configure(api_key=api_key)
